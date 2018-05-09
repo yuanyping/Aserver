@@ -1,0 +1,74 @@
+{% extends 'tem.html' %}
+{% block ftp %}
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>在线大小写转换</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>文件管理</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                    <form  method="post" action="/ftp/" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <p><label for="exampleInputFile">项目选择</label></p>
+                            <select name="project_select" style="width: 200px;height: 30px;font-size: 15px">
+                                {% for item in user_project.values %}
+                                    <option value ="{{ item }}">{{ item }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputFile">文件上传</label>
+                            <input type="file" id="exampleInputFile" name="file_name">
+                        </div>
+                        <button type="submit" class="btn btn-info">提交</button>
+                        <div style="margin-top: 10px">
+
+                            <p>文件下载地址：{{ down_url }}</p>
+                            <p>文件MD5值：{{ file_md5 }}</p>
+                        </div>
+                    </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}

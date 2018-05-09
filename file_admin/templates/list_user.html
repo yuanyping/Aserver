@@ -1,0 +1,38 @@
+{% extends 'tem.html' %}
+{% block ftp %}
+        <div class="right_col" role="main">
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                      <div class="x_title">
+                          <h2>用户列表</h2>
+                          <div class="clearfix"></div>
+                          <table class="table table-striped">
+                              <tr>
+                                  <td>id</td>
+                                  <td>用户名</td>
+                                  <td>授权目录</td>
+                                  <td>更新/删除</td>
+                              </tr>
+
+                              {% for user_i in users %}
+                                  <tr>
+                                  <td>{{ user_i.id }}</td>
+                                  <td>{{ user_i.user_name }}</td>
+                                  <td>{{ user_i.user_project }}</td>
+                                  <td><a href="/user_admin/update_user/?update={{ user_i.id }}">更新</a> |<a href="/user_admin/update_user/?delete={{ user_i.id }}">删除</a></td>
+                                  </tr>
+                              {% endfor %}
+
+                          </table>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}
+        <!-- /page content -->

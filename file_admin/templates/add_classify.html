@@ -1,0 +1,30 @@
+{% extends 'tem.html' %}
+{% block ftp %}
+        <div class="right_col" role="main">
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                      <div class="x_title">
+                        <h2>添加分类</h2>
+                        <div class="clearfix"></div>
+                      </div>
+                      <form style="width: 500px" action="/file_admin/add_classify/" method="post">
+                      {% csrf_token %}
+                          <div class="form-group">
+                            <input  class="form-control" id="exampleInputEmail1" placeholder="分类名称" name="classify">
+                          </div>
+                          <button type="submit" class="btn btn-default">添加</button>
+                          <p><span style="color:#c7254e ">{{ info }}</span></p>
+
+
+                      </form>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}
+        <!-- /page content -->

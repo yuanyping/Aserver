@@ -1,0 +1,63 @@
+{% extends 'tem.html' %}
+{% block ftp %}
+        <div class="right_col" role="main">
+          <div class="">
+
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                  <div class="x_title">
+                    <h2>筛选条件</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <form action="/file_admin/ftp_list/" method="post">
+                      {% csrf_token %}
+                      <p>项目选择：<select name="s_project">
+                          {% for p_name in project_list %}
+                          <option>{{ p_name.project_name }}</option>
+                          {% endfor %}
+                      </select>
+                      </p>
+                      <p>查询起始时间：<input type="date" name="s_time"> *如果未选择时间则默认显示当前</p>
+                      <input type="submit" value="查询">
+                  </form>
+
+                </div>
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>上传文件列表结果</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>文件名</td>
+                            <td>下载地址</td>
+                            <td>md5</td>
+                            <td>文件上传时间</td>
+                            <td>上传人</td>
+                            <td>文件所属目录</td>
+                            <td>所属项目</td>
+                        </tr>
+                        {% for row in ftp_list %}
+                        <tr>
+                            <td>{{ row.file_name }}</td>
+                            <td><a href="{{ row.file_download }}">{{ row.file_download }}</a></td>
+                            <td>{{ row.file_md5 }}</td>
+                            <td>{{ row.file_time }}</td>
+                            <td>{{ row.file_owner__user_name }}</td>
+                            <td>{{ row.file_dir }}</td>
+                            <td>{{ row.file_project__project_name }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}
+        <!-- /page content -->

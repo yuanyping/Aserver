@@ -1,0 +1,36 @@
+{% extends 'tem.html' %}
+{% block ftp %}
+        <div class="right_col" role="main">
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                      <div class="x_title">
+                        <h2>添加分类</h2>
+                        <div class="clearfix"></div>
+                      </div>
+                      <table class="table table-striped">
+                              <tr>
+                                  <td>id</td>
+                                  <td>目录</td>
+                                  <td>更新/删除</td>
+                              </tr>
+
+                              {% for clasify_i in classify_list %}
+                                  <tr>
+                                  <td>{{ clasify_i.id }}</td>
+                                  <td>{{ clasify_i.project_name }}</td>
+                                      <td><a href="/file_admin/admin_classify/?update={{ clasify_i.id }}">更新</a>|<a href="/file_admin/admin_classify/?delete={{ clasify_i.id }}"> 删除</a></td>
+                                  </tr>
+                              {% endfor %}
+
+                          </table>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}
+        <!-- /page content -->
